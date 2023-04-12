@@ -61,17 +61,17 @@ window.scAsyncInit = function () {
             stay = data.areas[0].stay;
 
             if (congestion == 5) {
-                $("#status-img").attr('src', '../Congestition/image/crowd_lv5.svg');
+                $("#status-img").attr('src', '../image/crowd_lv5.svg');
             } else if (congestion == 4) {
-                $("#status-img").attr('src', '../Congestition/image/crowd_lv4.svg');
+                $("#status-img").attr('src', '../image/crowd_lv4.svg');
             } else if (congestion == 3) {
-                $("#status-img").attr('src', '../Congestition/image/crowd_lv3.svg');
+                $("#status-img").attr('src', '../image/crowd_lv3.svg');
             } else if (congestion == 2) {
-                $("#status-img").attr('src', '../Congestition/image/crowd_lv2.svg');
+                $("#status-img").attr('src', '../image/crowd_lv2.svg');
             } else if (congestion == 1) {
-                $("#status-img").attr('src', '../Congestition/image/crowd_lv1.svg');
+                $("#status-img").attr('src', '../image/crowd_lv1.svg');
             } else {
-                $("#status-img").attr('src', '../Congestition/image/crowd_lv1.svg');
+                $("#status-img").attr('src', '../image/crowd_lv1.svg');
             }
 
             $("#entry").html("入場人数: " +entry);
