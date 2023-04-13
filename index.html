@@ -10,26 +10,29 @@
 </head>
 <body>
     <div class="timeMsg col-12 text-center">
-        <h1>応接室混雑状況 <span id="dateTime" class="text-decoration-underline"></span> 現在</h1>
+        <h1 style="font-size: 3vw;">応接室混雑状況 <span id="dateTime" class="text-decoration-underline"></span> 現在</h1>
         <img src="../image/crowd_radar.svg" alt="" class="col-10 mt-3 justify-content-around">
     </div>
 
     <div class="col-12 mt-5 mb-5">
         <div class="col-12 d-flex justify-content-center" id="main-content">
-            <div class="card col-4">
-                <img class="card-img-top" id="status-img" src="../image/crowd_lv1.svg" alt="混雑ステータス">
+            <div class="card col-4 flex-row">
+                <img class="card-img-top w-50 px-3" id="status-img" src="" alt="混雑ステータス">
                 <div class="card-body d-flex flex-column">
-                  <h5 class="card-title" id="area-name"></h5>
-                  <p class="card-text d-flex flex-column">
-                    <span id="entry"></span>
-                    <span id="exit"></span>
-                    <span id="stay"></span>
+                  <h5 class="card-title" id="area-name" style="font-size: 1.5vw;"></h5>
+                  <p class="card-text d-flex flex-column justify-content-center">
+                    <span id="entry" style="font-size: 1vw;"></span>
+                    <span id="exit" style="font-size: 1vw;"></span>
+                    <span id="stay" style="font-size: 1vw;"></span>
                   </p>
-                  <a href="#" class="btn btn-info text-white">予測表示</a>
+                  <a href="#" class="btn btn-info text-white" style="font-size: 1.5vw;">詳細</a>
                 </div>
             </div>        
         </div>
-        <div class="col-6 position-absolute" style="display: none; right: 3%; top: 50%;" id="chartBar">
+        <div class="col-6 position-absolute card" style="display: none; right: 3%; top: 35%;" id="chartBar">
+            <div class="d-flex justify-content-end">
+                <button type="button" class="btn-close" aria-label="Close"></button>
+            </div>
             <canvas id="chart"></canvas>
         </div>
     </div>

@@ -77,7 +77,7 @@ window.scAsyncInit = function () {
             $("#entry").html("入場人数: " +entry);
             $("#exit").html("退出人数: " +exit);
             $("#stay").html("宿泊人数: " + stay);
-            $("#area-name").html(area_name + "の詳細");
+            $("#area-name").html(area_name);
 
             $(".btn-info").click(function (event) {
                 event.preventDefault();
@@ -92,26 +92,20 @@ window.scAsyncInit = function () {
             })
 
             initChart(data);
+
+            $(".btn-close").click(function () {
+                $("#chartBar").css("display", "none");
+                var left = $('#main-content').offset().left;
+                $("#main-content").css({
+                    left: left
+                }).animate({
+                    "left": "0"
+                }, "slow");
+
+            })
         }
     })
 };
-
-// window.scpAsyncInit = function () {
-//     var scp = SCP.create({
-//         appId: "zNTGZK2JloKT6DujTvls",
-//         version: "v1"
-//     });
-
-//     scp.api({
-//         format: "json",
-//         type: 1,
-//         area_code: "ousetsu",
-//         callback: function(json) {
-//             console.log(1);
-//           console.log(json);
-//         }
-//     });
-// };
 
 (function (d, s, id) {
     var js, scjs = d.getElementsByTagName(s)[0];
@@ -120,11 +114,3 @@ window.scAsyncInit = function () {
     js.src = "https://stg-comieru.secureinc.co.jp/js/sdk.js";
     scjs.parentNode.insertBefore(js, scjs);
 }(document, 'script', 'sc-jssdk'));
-
-// (function (d, s, id) {
-//     var js, scpjs = d.getElementsByTagName(s)[0];
-//     if (d.getElementById(id)) { return; }
-//     js = d.createElement(s); js.id = id;
-//     js.src = "https://stg-comieru.secureinc.co.jp/js/sdk.js";
-//     scpjs.parentNode.insertBefore(js, scpjs);
-// }(document, 'script', 'scp-jssdk'));
