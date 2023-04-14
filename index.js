@@ -14,14 +14,69 @@ function getDate() {
 getDate();
 
 function initChart(count) {
-    chart = document.getElementsByClassName("chart");
     var num = [];
     var time = new Date();
     var hour = time.getHours();
 
-    num[hour] = count.areas[0].stay;
+    num[hour] = count.stay;
 
+    chartDetail = 
+    `
+        <div class="my-5 flip-card col-12 col-md-6 col-lg-6">
+            <div class="flip-card-inner">
+                <div class="main-content front-content">
+                    <div class="card card-main">
+                        <img class="card card-img-top px-3 status-img" src="" alt="混雑ステータス">
+                        
+                        <div class="card-body d-flex flex-column">
+                          <h5 class="card-title area-name"></h5>
+                          <p class="card-text d-flex flex-column justify-content-center">
+                            <span class="entry"></span>
+                            <span class="exit"></span>
+                            <span class="stay"></span>
+                          </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="main-content back-content">
+                    <div class="card card-main card-chart">                
+                        <div class="card card-img-top">
+                            <canvas class="chart"></canvas>
+                        </div>   
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
 
+    $('.inner').append(chartDetail);
+
+    area_name = count.name;
+    entry = count.entry;
+    exit = count.exit;
+    congestion = count.congestion;
+    stay = count.stay;
+
+    if (congestion == 5) {
+        $(".status-img").last().attr('src', '../image/crowd_lv5.svg');
+    } else if (congestion == 4) {
+        $(".status-img").last().attr('src', '../image/crowd_lv4.svg');
+    } else if (congestion == 3) {
+        $(".status-img").last().attr('src', '../image/crowd_lv3.svg');
+    } else if (congestion == 2) {
+        $(".status-img").last().attr('src', '../image/crowd_lv2.svg');
+    } else if (congestion == 1) {
+        $(".status-img").last().attr('src', '../image/crowd_lv1.svg');
+    } else {
+        $(".status-img").last().attr('src', '../image/crowd_lv1.svg');
+    }
+
+    $(".entry").last().html("入場人数: " +entry);
+    $(".exit").last().html("退出人数: " +exit);
+    $(".stay").last().html("宿泊人数: " + stay);
+    $(".area-name").last().html(area_name);
+
+    chart = $('.chart').last();
     new Chart(chart, {
         type: 'bar',
         data: {
@@ -43,6 +98,7 @@ function initChart(count) {
           }
         }
     });
+
 }
 
 window.scAsyncInit = function () {
@@ -54,30 +110,9 @@ window.scAsyncInit = function () {
     sc.api({
         format: "json",
         callback: function(data) {
-            area_name = data.areas[0].name;
-            entry = data.areas[0].entry;
-            exit = data.areas[0].exit;
-            congestion = data.areas[0].congestion;
-            stay = data.areas[0].stay;
-
-            if (congestion == 5) {
-                $(".status-img").attr('src', '../image/crowd_lv5.svg');
-            } else if (congestion == 4) {
-                $(".status-img").attr('src', '../image/crowd_lv4.svg');
-            } else if (congestion == 3) {
-                $(".status-img").attr('src', '../image/crowd_lv3.svg');
-            } else if (congestion == 2) {
-                $(".status-img").attr('src', '../image/crowd_lv2.svg');
-            } else if (congestion == 1) {
-                $(".status-img").attr('src', '../image/crowd_lv1.svg');
-            } else {
-                $(".status-img").attr('src', '../image/crowd_lv1.svg');
+            for (let index = 0; index < data.areas.length; index++) {
+                initChart(data.areas[index]);
             }
-
-            $(".entry").html("入場人数: " +entry);
-            $(".exit").html("退出人数: " +exit);
-            $(".stay").html("宿泊人数: " + stay);
-            $(".area-name").html(area_name);
 
             // $(".btn-info").click(function (event) {
             //     event.preventDefault();
@@ -91,7 +126,6 @@ window.scAsyncInit = function () {
             //     $("#chartBar").css("display", "block");
             // })
 
-            initChart(data);
 
             // $(".btn-close").click(function () {
             //     $("#chartBar").css("display", "none");
