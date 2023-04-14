@@ -14,7 +14,7 @@ function getDate() {
 getDate();
 
 function initChart(count) {
-    chart = document.getElementById("chart");
+    chart = document.getElementsByClassName("chart");
     var num = [];
     var time = new Date();
     var hour = time.getHours();
@@ -61,48 +61,48 @@ window.scAsyncInit = function () {
             stay = data.areas[0].stay;
 
             if (congestion == 5) {
-                $("#status-img").attr('src', '../image/crowd_lv5.svg');
+                $(".status-img").attr('src', '../Congestition/image/crowd_lv5.svg');
             } else if (congestion == 4) {
-                $("#status-img").attr('src', '../image/crowd_lv4.svg');
+                $(".status-img").attr('src', '../Congestition/image/crowd_lv4.svg');
             } else if (congestion == 3) {
-                $("#status-img").attr('src', '../image/crowd_lv3.svg');
+                $(".status-img").attr('src', '../Congestition/image/crowd_lv3.svg');
             } else if (congestion == 2) {
-                $("#status-img").attr('src', '../image/crowd_lv2.svg');
+                $(".status-img").attr('src', '../Congestition/image/crowd_lv2.svg');
             } else if (congestion == 1) {
-                $("#status-img").attr('src', '../image/crowd_lv1.svg');
+                $(".status-img").attr('src', '../Congestition/image/crowd_lv1.svg');
             } else {
-                $("#status-img").attr('src', '../image/crowd_lv1.svg');
+                $(".status-img").attr('src', '../Congestition/image/crowd_lv1.svg');
             }
 
-            $("#entry").html("入場人数: " +entry);
-            $("#exit").html("退出人数: " +exit);
-            $("#stay").html("宿泊人数: " + stay);
-            $("#area-name").html(area_name);
+            $(".entry").html("入場人数: " +entry);
+            $(".exit").html("退出人数: " +exit);
+            $(".stay").html("宿泊人数: " + stay);
+            $(".area-name").html(area_name);
 
-            $(".btn-info").click(function (event) {
-                event.preventDefault();
-                var left = $('#main-content').offset().left;
-                $("#main-content").css({
-                    left: left
-                }).animate({
-                    "left": "-25%"
-                }, "slow");
+            // $(".btn-info").click(function (event) {
+            //     event.preventDefault();
+            //     var left = $('#main-content').offset().left;
+            //     $("#main-content").css({
+            //         left: left
+            //     }).animate({
+            //         "left": "-25%"
+            //     }, "slow");
 
-                $("#chartBar").css("display", "block");
-            })
+            //     $("#chartBar").css("display", "block");
+            // })
 
             initChart(data);
 
-            $(".btn-close").click(function () {
-                $("#chartBar").css("display", "none");
-                var left = $('#main-content').offset().left;
-                $("#main-content").css({
-                    left: left
-                }).animate({
-                    "left": "0"
-                }, "slow");
+            // $(".btn-close").click(function () {
+            //     $("#chartBar").css("display", "none");
+            //     var left = $('#main-content').offset().left;
+            //     $("#main-content").css({
+            //         left: left
+            //     }).animate({
+            //         "left": "0%"
+            //     }, "slow");
 
-            })
+            // })
         }
     })
 };

@@ -1,0 +1,107 @@
+.msg-title {
+    font-size: 80px;
+    @include pc {
+        font-size: get_pc(80);
+    }
+    @include sp {
+        font-size: get_sp(20);
+    }
+}
+
+.chart {
+    width: 100%;
+}
+
+.inner {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+
+    .flip-card {    
+        height: 450px;
+
+        @include pc {
+            height: get_pc(400);
+        }
+        @include sp {
+            height: get_pc(1920);
+        }
+        
+        @include smp {
+            height: get_smp(450);
+        }
+    }
+}
+
+.main-content {
+    .card-main {
+        max-width: 80%;
+        display: flex;
+        flex-direction: row !important;
+        margin: 0 auto;
+
+        @include pc {
+            flex-direction: row !important;
+        }
+        @include sp {
+            flex-direction: column !important;
+        }
+
+        .status-img {
+            width: 60%;
+        
+            @include pc {
+                width: 60%;
+            }
+        
+            @include sp {
+                margin: 0 auto;
+                width: 100%;
+            }
+        }
+
+        .card-body {
+            justify-content: center;
+            h5 {
+                font-size: 36px;
+                @include pc {
+                    font-size: get_pc(36);
+                }
+                @include sp {
+                    font-size: get_sp(20);
+                }
+            }
+            p, a {
+                font-size: 26px;
+                @include pc {
+                    font-size: get_pc(20);
+                }
+                @include sp {
+                    font-size: get_sp(12);
+                }
+            }
+        }
+    }
+}
+
+.flip-card-inner {
+    position: relative;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;  
+}
+  
+.flip-card:hover .flip-card-inner {
+    transform: rotateY(180deg);
+}
+  
+.back-content, .front-content {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+
+.back-content {
+    transform: rotateY(180deg);
+}

@@ -1,0 +1,62 @@
+@mixin bgsetup($bgimage: '', $bgrepeat: '', $bgposi: '', $bgsize: '') {
+    @if $bgimage != '' {
+        background-image: url($bgimage);
+    }
+    @if $bgrepeat != '' {
+        background-repeat: $bgrepeat;
+    }
+    @if $bgposi != '' {
+        background-position: $bgposi;
+    }
+    @if $bgsize != '' {
+        background-size: $bgsize;
+    }
+}
+
+@mixin bgsetup($bgimage: '', $bgrepeat: '', $bgposi: '', $bgsize: '') {
+    @if $bgimage != '' {
+        background-image: url($bgimage);
+    }
+    @if $bgrepeat != '' {
+        background-repeat: $bgrepeat;
+    }
+    @if $bgposi != '' {
+        background-position: $bgposi;
+    }
+    @if $bgsize != '' {
+        background-size: $bgsize;
+    }
+}
+
+@mixin pc { //pc
+    @media only screen and (max-width: ($breakpoint-lagre)) and (min-width: ($breakpoint-pc)) {
+        @content;
+    }
+}
+
+@mixin sp { //sp
+    @media (max-width: ($breakpoint-md)) {
+        @content;
+    }
+}
+
+@mixin smp {
+    @media (max-width: ($breakpoint-md)) and (min-width: ($breakpoint-sp)) {
+        @content;
+    }
+}
+
+@function get_pc($fsize, $viewport:1920) {
+    $rate: 100 / $viewport;
+    @return $rate * $fsize * 1vw;
+}
+
+@function get_sp($fsize, $viewport:428) {
+    $rate: 100 / $viewport;
+    @return $rate * $fsize * 1vw;
+}
+
+@function get_smp($fsize, $viewport:900) {
+    $rate: 100 / $viewport;
+    @return $rate * $fsize * 1vw;
+}
